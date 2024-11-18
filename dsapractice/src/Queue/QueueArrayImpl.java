@@ -38,14 +38,14 @@ public class QueueArrayImpl {
 	}
 	
 	public boolean isFull() {
-		return tail==qarr.length-1;
+		return ((this.size>=qarr.length-1));
 	}
 	
 	public void enqueue(int val) {
 		if(this.isFull())
 			qarr=this.resize(qarr, qarr.length*2);
 		
-		tail++;
+		tail=(tail+1)%qarr.length;
 		qarr[tail]=val;
 		size++;
 
@@ -75,12 +75,7 @@ public class QueueArrayImpl {
 	
 	public static void main(String[] args) {
 		QueueArrayImpl q = new QueueArrayImpl();
-		q.enqueue(3);
-		q.enqueue(5);
-		q.enqueue(6);
-		q.enqueue(7);
-		q.enqueue(24);
-		q.enqueue(49);
+		q.enqueue(3);q.enqueue(5);q.enqueue(6);q.enqueue(7);q.enqueue(24);q.enqueue(49);
 		q.print();
 		System.out.println(q.size());
 //		System.out.println(q.qarr.length);
@@ -94,5 +89,16 @@ public class QueueArrayImpl {
 //		System.out.println(q.dequeue());
 		q.print();
 		System.out.println(q.head+" "+q.tail);
+		
+		System.out.println(q.isEmpty());
+		q.enqueue(25);
+		q.enqueue(3);q.enqueue(5);q.enqueue(6);q.enqueue(7);q.enqueue(24);q.enqueue(49);
+		q.enqueue(200);q.enqueue(300);q.enqueue(400);
+		q.enqueue(500);
+//		q.enqueue(3);q.enqueue(5);q.enqueue(6);q.enqueue(7);q.enqueue(24);q.enqueue(49);
+		q.print();
+		System.out.println(q.size()+" ");
+		q.dequeue();
+//		System.out.println(q.head);
 	}
 }

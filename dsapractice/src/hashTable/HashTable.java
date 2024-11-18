@@ -1,5 +1,6 @@
 package hashTable;
 
+
 public class HashTable {
 
 	private int numOfBuckets; // total size of the table
@@ -75,16 +76,24 @@ public class HashTable {
 		return null;
 	}
 	
-	public void printEle() {
-		for(int i=0;i<numOfBuckets;i++) {
-			System.out.print(i+" : ");
-			HashNode head= buckets[i];
-			
-			while(head!= null) {
-				System.out.print(head.value+" - ");
-				head=head.next;
+	private void print() {
+		
+		for(int i =0;i<numOfBuckets;i++) {
+			HashNode node = buckets[i];
+			System.out.print("The bucket Index is : "+ i);
+			if(node != null) {
+				printNodeList( node);
 			}
-			System.out.println(head+" - ");
+			System.out.println();
+		}
+		
+	}
+
+	private void printNodeList(HashNode node) {
+		// TODO Auto-generated method stub
+		while(node!=null) {
+			System.out.print(" : "+node.value+" ");
+			node=node.next;
 		}
 	}
 	
@@ -121,11 +130,11 @@ public class HashTable {
 		ht.addEle(114, "Wick");
 //		System.out.println(ht.length());
 		ht.addEle(134, "Trigger");
-		ht.printEle();
+		ht.print();
 		ht.addEle(105, "Nick");
 		System.out.println(ht.getKey(114));
 		System.out.println(ht.deleteKey(114));
-		ht.printEle();
+		ht.print();
 	}
 
 }
